@@ -41,17 +41,19 @@ def translate_choice(abr)
   end
 end
 
-def update_players_score(player, computer, players_scores, player_wins)
+def update_players_score(player, computer, players_scores, player_wins, computer_wins)
   if win?(player, computer)
     players_scores[:player] += 1
     p player_wins += 1
   elsif win?(computer, player)
     players_scores[:computer] += 1
+    p computer_wins += 1
   end
 end
 
 players_scores = Hash.new(0)
 player_wins = 0
+computer_wins = 0
 loop do
   choice = ''
   loop do
@@ -69,12 +71,13 @@ loop do
   prompt("You chose #{choice}, Computer chose: #{computer_choice}")
 
   display_results(choice, computer_choice)
-  update_players_score(choice, computer_choice, players_scores, player_wins)
+  update_players_score(choice, computer_choice, players_scores, player_wins, computer_wins)
 
   prompt('----------')
   prompt("Your score: #{players_scores[:player]}")
   prompt("Computer's score: #{players_scores[:computer]}")
-  prompt("Test: #{player_wins}")
+  prompt("player win via local variable: #{player_wins}")
+  prompt("computer win via local variable: #{computer_wins}")
   prompt('----------')
 
   if players_scores[:player] == 5
