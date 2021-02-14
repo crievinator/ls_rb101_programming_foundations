@@ -53,6 +53,7 @@ players_scores = Hash.new(0)
 loop do
   choice = ''
   loop do
+    # ask for user input as abbreviation
     prompt("Choose one: #{VALID_CHOICES.join(', ')} by typing p, r, s, l or sp")
 
     # convert abbreviation to full string and check if it's valid input
@@ -62,6 +63,7 @@ loop do
 
     prompt("That's not a valid choice.")
   end
+  # let computer make a random choice Array#sample
   computer_choice = VALID_CHOICES.sample
 
   # check both choices and who has won. Update player score.
