@@ -83,10 +83,19 @@ loop do
     exit
   end
 
-  # ask user to play again. If 'Y' or 'y' proceed, else exit.
-  prompt('Play again?')
-  answer = Kernel.gets.chomp
-  break unless answer.downcase.start_with?('y')
-end
+  # ask user to play again. If 'Y' or 'y' -> proceed, if 'exit', exit
+  loop do
+    prompt('Play again? For playing again type \'Y\' or \'y\'.
+            Otherwise type \'exit\'.')
+    answer = Kernel.gets.chomp
 
-prompt('Thanks for playing, Good bye!')
+    if answer.downcase.start_with?('y')
+      break
+    elsif answer == 'exit'
+      prompt('Thanks for playing, Good bye!')
+      exit
+    else
+      prompt('I don\'t understand what you are saying ...?')
+    end
+  end
+end
