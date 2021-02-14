@@ -55,6 +55,7 @@ loop do
   loop do
     prompt("Choose one: #{VALID_CHOICES.join(', ')} by typing p, r, s, l or sp")
 
+    # convert abbreviation to full string and check if it's valid input
     abreviated_choice = Kernel.gets.chomp
     choice = translate_choice(abreviated_choice)
     break if VALID_CHOICES.include?(choice)
@@ -63,9 +64,9 @@ loop do
   end
   computer_choice = VALID_CHOICES.sample
 
+  # check both choices and who has won. Update player score.
   prompt("You chose #{choice}, computer chose: #{computer_choice}")
   display_results(choice, computer_choice)
-
   update_players_score(choice, computer_choice, players_scores)
 
   prompt('----------')
@@ -82,6 +83,7 @@ loop do
     exit
   end
 
+  # ask user to play again. If 'Y' or 'y' proceed, else exit.
   prompt('Play again?')
   answer = Kernel.gets.chomp
   break unless answer.downcase.start_with?('y')
