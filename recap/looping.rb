@@ -53,3 +53,26 @@ until number == 10
   number += 1
   puts number
 end
+
+
+family = ["yves", "ine", "leon", "marie", "emma"]
+family_roles = {yves: "father", ine: "mother", leon:  "son", marie: "cat", emma: "dog"}
+
+counter = 0
+
+loop do 
+  break if counter == family.size
+  member = family[counter].to_sym
+  puts "#{family[counter]} has a #{family_roles[member]}-role"
+  counter += 1
+end
+
+
+family_roles.each_with_index do |(a,b), index|
+  puts "#{a} #{b} #{index}"
+end
+
+family_roles.each_with_index do |pair, index|
+  puts "#{pair} #{index}"
+end
+
